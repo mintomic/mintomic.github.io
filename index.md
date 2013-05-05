@@ -13,7 +13,7 @@ Mintomic (short for "minimal atomic") is an API for low-level [lock-free program
 1. Straightforward implementation.
 1. Compatibility with older compilers. C11 and C++11 not required.
 
-For more information, see the blog post [Introducing Mintomic](http://preshing.com/).
+For more information, see the blog post [Introducing Mintomic](http://preshing.com/20130505/introducing-mintomic-a-small-portable-lock-free-api).
 
 ## Supported Platforms
 
