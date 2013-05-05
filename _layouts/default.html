@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Test : " />
+
+    <link rel="stylesheet" type="text/css" media="screen, projection" href="/stylesheets/stylesheet.css">
+
+    <title>Mintomic - {{ page.title }}</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/preshing/Mintomic">View on GitHub</a>
+        
+          <div class="col1">
+            <img src="/images/logo.png"/>
+          </div>
+          <div class="col2">
+            <h1 id="project_title">Mintomic</h1>
+            <h2 id="project_tagline">A Small, Portable Lock-Free API</h2>
+          </div>
+        </header>
+    </div>
+
+    <!-- NAV BAR -->
+    <div class="nav_bar_wrap outer">
+      <div class="inner">
+        <div class="col2">
+          {% include nav.html %}
+        </div>
+      </div>
+    </div>
+    
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <div id="main_content" class="inner">
+        <div class="col1">
+          <h4>Contents</h4>
+          <div class="toc">
+            {% include toc.html %}
+          </div>
+        </div>
+        <div class="col2">
+          <h1>{{ page.title }}</h1>
+          {{ content }}
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <!-- NAV BAR -->
+    <div class="nav_bar_wrap outer">
+      <div class="inner">
+        <div class="col2">
+          {% include nav.html %}
+        </div>
+      </div>
+    </div>
+    
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <div class="col2">
+          <p class="copyright"><a href="https://github.com/preshing/Mintomic">Mintomic</a> maintained by <a href="https://github.com/preshing">Jeff Preshing</a></p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

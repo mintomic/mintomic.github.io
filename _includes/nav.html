@@ -1,0 +1,17 @@
+<div class="nav">
+  <span id="prev">
+    {% if page.prev %}
+    Previous: <a href="{{ page.prev }}">{{ page.prev_title | escape }}</a>
+    {% endif %}
+  </span>
+  <span id="next">
+    {% if page.next %}
+    Next: <a href="{{ page.next }}">{{ page.next_title | escape }}</a>
+    {% endif %}
+  </span>
+  <center><span id="up">
+    {% if page.up %}
+    Up: <a href="{{ page.up }}">{{ page.up_title | escape }}</a>
+    {% endif %}
+  </span></center>
+</div>
