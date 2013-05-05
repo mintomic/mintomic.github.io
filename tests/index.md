@@ -15,9 +15,9 @@ Every test case with a `_fail` suffix on its name contains an intentional bug. T
 
 ## How to Build
 
-First, you must generate the projects using [CMake](http://www.cmake.org/). Open a command prompt in the `tests` folder, and do the following. On Windows, replace `md` with `mkdir`.
+First, you must generate the projects using [CMake](http://www.cmake.org/). Open a command prompt in the `tests` folder, and do the following.
 
-    md build
+    mkdir build
     cd build
     cmake .. 
 
