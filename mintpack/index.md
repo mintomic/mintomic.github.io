@@ -13,7 +13,7 @@ MintPack is a portable collection of data structures and modules.
 
 To use MintPack in your project, add the top-level `include/` folder to your include paths, and compile and link with a lib build from the source in the `src/mintpack/` folder. There's a `CMakeLists.txt` located there, so you can use CMake to generate this lib for you. See the [test suite](../tests) for some examples of how it's used.
 
-At this point, it's recommended that you just browse the source, header files and test cases to get more information on how to use these data structures and modules.
+At this point, it's recommended that you just browse the [source](https://github.com/mintomic/mintomic/tree/master/src/mintpack), [header files](https://github.com/mintomic/mintomic/tree/master/include/mintpack) and [test cases](https://github.com/mintomic/mintomic/tree/master/tests) to get more information on how to use these data structures and modules.
 
 ## Lightweight Logger
 
