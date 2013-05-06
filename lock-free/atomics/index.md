@@ -38,7 +38,7 @@ For an atomic pointer-sized integer, you can just use `mint_atomicPtr_t` and cas
 
 #### Non-Atomic Manipulation
     
-In Mintomic, it is perfectly valid to manipulate the `_nonatomic` member of these atomic data types directly. Such operations are faster on some platforms, but considered non-atomic. Therefore, you should only use them in functions which only run when no other threads access the variable, such as in initialization code, shutdown code, or at a known safe point in your application's main loop. Additionally, these operations should always be delimited by a synchronizing operation, such as a memory fence, semaphore operation or creation of a thread.
+In Mintomic, it is perfectly valid to manipulate the `_nonatomic` member of these atomic data types directly. Such operations are faster on some platforms, but considered non-atomic. Therefore, you should only use them in functions which only run when no other threads access the variable, such as in initialization code, shutdown code, or at a known safe point in your application's main loop. Additionally, these operations should always be delimited by a synchronizing operation before and after access from other threads, such as a memory fence, semaphore operation or creation of a thread.
 
     mint_atomic32_t readyFlag = { 0 };
     mint_atomic64_t sharedValue;
