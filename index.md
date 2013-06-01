@@ -29,13 +29,13 @@ Mintomic consists of the following submodules:
 
 Provides portable memory fences such as `mint_thread_fence_acquire`, atomic read-modify-write operations such as `mint_fetch_add_32_relaxed`, plus various helper functions, macros and types. Implemented in pure C, mainly as a set of header files.
 
-#### [MintThreads](mintthreads)
+#### [MintSystem](mintsystem)
 
-Offers a portable way to create and manipulate threads, semaphore and timers across all supported platforms. Implemented as a pure C library.
+A portable API for thread creation, semaphores, time and date services, sleep, and thread and process IDs. Basically, the system services you need in order to run lock-free code in the first place, plus a few extras. Implemented in pure C.
 
 #### [MintPack](mintpack)
 
-A collection of data structures and modules built on top of Mintomic and MintThreads. Written as a platform-independent library in C++.
+A collection of data structures and modules built on top of Mintomic and MintSystem. Written as a platform-independent library in C++.
 
 #### [Test Suite](tests)
 

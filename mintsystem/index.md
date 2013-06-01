@@ -1,6 +1,6 @@
 ---
 layout: default
-title: MintThreads
+title: MintSystem
 next: /mintpack
 prev: /lock-free/memory-fences
 prev_title: Memory Fences
@@ -9,11 +9,11 @@ up_title: Introduction
 next_title: MintPack
 ---
 
-MintThreads offers a minimal, portable way to create and manipulate threads, semaphores and timers across all supported platforms. If your project requires a more complete set of PThreads functionality, and you still want Windows compatibility, you might be interested in the [PThreads-Win32](http://sourceware.org/pthreads-win32/) project.
+MintSystem is a portable API for thread creation, semaphores, time and date services, sleep, and thread and process IDs. Basically, the system services you need in order to run lock-free code in the first place, plus a few extras. If your project requires a more complete set of PThreads functionality, and you still want Windows compatibility, you might be interested in the [PThreads-Win32](http://sourceware.org/pthreads-win32/) project.
 
-To use MintThreads in your project, add the top-level `include/` folder to your include path, then include the appropriate headers such as `<mintthreads/thread.h>`. To use MintThreads on UNIX-like platforms, including Linux, MacOS or iOS, you must also compile and link using the `-pthread` option.
+To use MintSystem in your project, add the top-level `include/` folder to your include path, then include the appropriate headers such as `<mintsystem/thread.h>`. To use MintSystem on UNIX-like platforms, including Linux, MacOS or iOS, you must also compile and link using the `-pthread` option.
 
-On all platforms, you must also compile and link with a lib built from the appropriate source in the `src/mintthreads/` folder. There's a `CMakeLists.txt` located there, so you can use CMake to generate this lib for you. See the [tests](/tests) for some examples of how it's used.
+On all platforms, you must also compile and link with a lib built from the appropriate source in the `src/mintsystem/` folder. There's a `CMakeLists.txt` located there, so you can use CMake to generate this lib for you. See the [tests](/tests) for some examples of how it's used.
 
 ## Thread Creation
 
@@ -22,7 +22,7 @@ You can use the following functions to create threads and wait for threads to co
 `mint_thread_t` is an opaque pointer type which represents a handle to the thread. The first argument to `mint_thread_create` is actually a pointer to a pointer which receives the new handle.
 
 {% highlight cpp %}
-#include <mintthreads/thread.h>
+#include <mintsystem/thread.h>
 
 int mint_thread_create(mint_thread_t *thread, void *(*start_routine) (void *), void *arg);
 int mint_thread_join(mint_thread_t thread, void **retval);
@@ -33,7 +33,7 @@ int mint_thread_join(mint_thread_t thread, void **retval);
 You can use the following functions to create, manipulate and destroy semaphores. These are different from POSIX semaphores, though they share a similar API.
 
 {% highlight cpp %}
-#include <mintthreads/semaphore.h>
+#include <mintsystem/semaphore.h>
 
 mint_sem_t *mint_sem_create();
 int mint_sem_destroy(mint_sem_t *sem);
@@ -50,7 +50,7 @@ Unlike a POSIX semaphore, `mint_sem_wait` is guaranteed never to return early wi
 Mintomic provides portable functions for low-overhead, high-resolution timers suitable for timing sections of code in the 0.5 microsecond range and up.
 
 {% highlight cpp %}
-#include <mintthreads/timer.h>
+#include <mintsystem/timer.h>
 
 extern double mint_timer_secondsToTicks;
 extern double mint_timer_ticksToSeconds;
@@ -62,3 +62,43 @@ mint_timer_tick mint_timer_get();
 At program startup, you must call `mint_timer_initialize`.
 
 After that, you can safely call `mint_timer_get`, which returns `mint_timer_tick` values. You can subtract these values to obtain timing deltas, then convert them to and from seconds by using the conversion ratios `mint_timer_ticksToSeconds` and `mint_timer_secondsToTicks`.
+
+## Date and Time
+
+`mint_get_current_utc_time` returns the number of microseconds since January 1, 1601 in Coordinated Universal Time (UTC). [MintPack](/mintpack)'s `Random` uses this internally.
+
+{% highlight cpp %}
+#include <mintsystem/datetime.h>
+
+uint64_t mint_get_current_utc_time();
+{% endhighlight %}
+
+## Sleep
+
+Sleep for a specified number of milliseconds.
+
+{% highlight cpp %}
+    #include <mintsystem/timer.h>
+
+    void mint_sleep_millis(int millis);
+{% endhighlight %}
+
+On systems where cores have two hardware threads, `mint_yield_hw_thread` will generate a CPU instruction to yield to the other hardware thread. [Thread Synchronizer](/mintpack) uses this internally.
+
+{% highlight cpp %}
+    #include <mintsystem/timer.h>
+
+    void mint_yield_hw_thread();
+{% endhighlight %}
+
+## Thread and Process IDs
+
+You can lookup the current thread and process IDs. These basically return the values you'd expect on each platform. On Xbox 360, `mint_get_current_process_id` always returns 0.
+
+{% highlight cpp %}
+    #include <mintsystem/tid.h>
+
+    mint_tid mint_get_current_thread_id();
+    mint_pid_t mint_get_current_process_id();
+{% endhighlight %}
+

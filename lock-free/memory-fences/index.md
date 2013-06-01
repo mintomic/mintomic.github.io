@@ -1,12 +1,12 @@
 ---
 layout: default
 title: Memory Fences
-next: /mintthreads
+next: /mintsystem
 prev: /lock-free/atomics
 prev_title: Atomic Operations
 up: /lock-free
 up_title: Lock-Free API
-next_title: MintThreads
+next_title: MintSystem
 ---
 
 The only way to enforce memory ordering in Mintomic is by issuing an explicit fence instruction. Unlike the C/C++11 atomic library standards, there is no Mintomic primitive which simultaneously manipulates shared memory while issuing a memory barrier, like C++11's `std::atomic<int>::fetch_add` does for example. This actually works out quite well, because on the CPU architectures supported by Mintomic, a fence is always implemented using a separate machine instruction or compiler directive anyway.

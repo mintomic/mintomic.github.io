@@ -42,17 +42,6 @@ Declares *only* pure C functions (non-C++ class members) inline.
 
 Disables automatic inlining on functions whose definitions are visible from the caller's scope.
 
-## Functions
+##### MINT_THREAD_LOCAL
 
-    mint_tid mint_get_current_thread_id();
-
-Returns a unique `mint_tid` identifying the current thread.
-
-    void mint_yield_hw_thread();
-
-On systems where cores have two hardware threads, yields to the other hardware thread.
-
-    void mint_sleep_millis(int millis);
-
-A sleep function.
-	
+To declare thread-local variables.
