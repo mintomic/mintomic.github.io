@@ -78,17 +78,17 @@ uint64_t mint_get_current_utc_time();
 Sleep for a specified number of milliseconds.
 
 {% highlight cpp %}
-    #include <mintsystem/timer.h>
+#include <mintsystem/timer.h>
 
-    void mint_sleep_millis(int millis);
+void mint_sleep_millis(int millis);
 {% endhighlight %}
 
 On systems where cores have two hardware threads, `mint_yield_hw_thread` will generate a CPU instruction to yield to the other hardware thread. [Thread Synchronizer](/mintpack) uses this internally.
 
 {% highlight cpp %}
-    #include <mintsystem/timer.h>
+#include <mintsystem/timer.h>
 
-    void mint_yield_hw_thread();
+void mint_yield_hw_thread();
 {% endhighlight %}
 
 ## Thread and Process IDs
@@ -96,9 +96,9 @@ On systems where cores have two hardware threads, `mint_yield_hw_thread` will ge
 You can lookup the current thread and process IDs. These basically return the values you'd expect on each platform. On Xbox 360, `mint_get_current_process_id` always returns 0.
 
 {% highlight cpp %}
-    #include <mintsystem/tid.h>
+#include <mintsystem/tid.h>
 
-    mint_tid mint_get_current_thread_id();
-    mint_pid_t mint_get_current_process_id();
+mint_tid mint_get_current_thread_id();
+mint_pid_t mint_get_current_process_id();
 {% endhighlight %}
 
