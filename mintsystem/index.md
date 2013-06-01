@@ -56,22 +56,13 @@ extern double mint_timer_secondsToTicks;
 extern double mint_timer_ticksToSeconds;
 
 void mint_timer_initialize();
-mint_timer_tick mint_timer_get();
+mint_timer_tick_t mint_timer_get();
+int mint_timer_greater_or_equal(mint_timer_tick_t a, mint_timer_tick_t b);
 {% endhighlight %}
 
 At program startup, you must call `mint_timer_initialize`.
 
-After that, you can safely call `mint_timer_get`, which returns `mint_timer_tick` values. You can subtract these values to obtain timing deltas, then convert them to and from seconds by using the conversion ratios `mint_timer_ticksToSeconds` and `mint_timer_secondsToTicks`.
-
-## Date and Time
-
-`mint_get_current_utc_time` returns the number of microseconds since January 1, 1601 in Coordinated Universal Time (UTC). [MintPack](/mintpack)'s `Random` uses this internally.
-
-{% highlight cpp %}
-#include <mintsystem/datetime.h>
-
-uint64_t mint_get_current_utc_time();
-{% endhighlight %}
+After that, you can safely call `mint_timer_get`, which returns `mint_timer_tick_t` values. You can subtract these values to obtain timing deltas, then convert them to and from seconds by using the conversion ratios `mint_timer_ticksToSeconds` and `mint_timer_secondsToTicks`. Use `mint_timer_greater_or_equal` to determine whether `b` is not earlier than `a` in time; it handles wrap-around.
 
 ## Sleep
 
@@ -89,6 +80,16 @@ On systems where cores have two hardware threads, `mint_yield_hw_thread` will ge
 #include <mintsystem/timer.h>
 
 void mint_yield_hw_thread();
+{% endhighlight %}
+
+## Date and Time
+
+`mint_get_current_utc_time` returns the number of microseconds since January 1, 1601 in Coordinated Universal Time (UTC). [MintPack](/mintpack)'s `Random` uses this internally.
+
+{% highlight cpp %}
+#include <mintsystem/datetime.h>
+
+uint64_t mint_get_current_utc_time();
 {% endhighlight %}
 
 ## Thread and Process IDs
