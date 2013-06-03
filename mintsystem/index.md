@@ -99,7 +99,7 @@ You can lookup the current thread and process IDs. These basically return the va
 {% highlight cpp %}
 #include <mintsystem/tid.h>
 
-mint_tid mint_get_current_thread_id();
+mint_tid_t mint_get_current_thread_id();
 mint_pid_t mint_get_current_process_id();
 {% endhighlight %}
 
