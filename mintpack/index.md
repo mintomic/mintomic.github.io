@@ -27,7 +27,7 @@ A lightweight logging system, identical to the one described in [this blog post]
 
 Implements `Random`, a self-seeding pseudorandom number generator with excellent pseudorandom distribution. It passes all 144 tests in [TestU01](http://www.iro.umontreal.ca/~simardr/testu01/tu01.html)'s Crush suite. Unlike `rand`, it returns values that are uniformly distributed in the complete range of 32-bit integers. Unlike many pseudorandom number generators, you don't have to seed it, yet two instances of `Random` are extremely unlikely to generate the same sequence. It uses [MintSystem](/mintsystem) services to help accomplish this.
 
-`Random::generate` generates a pseudorandom `uint32_t`, while `Random::generateUnique` is guaranteed to return a [unique value](http://preshing.com/20121224/how-to-generate-a-sequence-of-unique-random-integers) for up to 4,294,967,296 calls, at which point it loops. Not thread-safe.
+`Random::generate32` generates a pseudorandom `uint32_t`, while `Random::generateUnique32` is guaranteed to return a [unique value](http://preshing.com/20121224/how-to-generate-a-sequence-of-unique-random-integers) for up to 4,294,967,296 calls, at which point it loops. Not thread-safe.
 
 ## Thread Synchronizer
 
