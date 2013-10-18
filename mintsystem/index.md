@@ -55,14 +55,16 @@ Mintomic provides portable functions for low-overhead, high-resolution timers su
 extern double mint_timer_secondsToTicks;
 extern double mint_timer_ticksToSeconds;
 
+int mint_timer_is_initialized();
 void mint_timer_initialize();
+double mint_timer_getSecondsToTicks();
 mint_timer_tick_t mint_timer_get();
 int mint_timer_greater_or_equal(mint_timer_tick_t a, mint_timer_tick_t b);
 {% endhighlight %}
 
-At program startup, you must call `mint_timer_initialize`.
+`mint_timer_initialize` only initializes the conversion ratios `mint_timer_ticksToSeconds` and `mint_timer_secondsToTicks`, which are provided for convenience. You can safely call any other function without calling `mint_timer_initialize` first.
 
-After that, you can safely call `mint_timer_get`, which returns `mint_timer_tick_t` values. You can subtract these values to obtain timing deltas, then convert them to and from seconds by using the conversion ratios `mint_timer_ticksToSeconds` and `mint_timer_secondsToTicks`. Use `mint_timer_greater_or_equal` to determine whether `b` is not earlier than `a` in time; it handles wrap-around.
+`mint_timer_get` which returns `mint_timer_tick_t` values. You can subtract these values to obtain timing deltas, then convert them to and from seconds by using the convenience conversion ratios. Use `mint_timer_greater_or_equal` to determine whether `b` is not earlier than `a` in time; it handles wrap-around. Call `mint_timer_getSecondsToTicks` to obtain the conversion ratio without calling `mint_timer_initialize` first; it queries the value from the system each time.
 
 ## Sleep
 
