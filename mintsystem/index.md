@@ -64,7 +64,7 @@ int mint_timer_greater_or_equal(mint_timer_tick_t a, mint_timer_tick_t b);
 
 `mint_timer_initialize` only initializes the conversion ratios `mint_timer_ticksToSeconds` and `mint_timer_secondsToTicks`, which are provided for convenience. You can safely call any other function without calling `mint_timer_initialize` first.
 
-`mint_timer_get` which returns `mint_timer_tick_t` values. You can subtract these values to obtain timing deltas, then convert them to and from seconds by using the convenience conversion ratios. Use `mint_timer_greater_or_equal` to determine whether `b` is not earlier than `a` in time; it handles wrap-around. Call `mint_timer_getSecondsToTicks` to obtain the conversion ratio without calling `mint_timer_initialize` first; it queries the value from the system each time.
+`mint_timer_get` returns `mint_timer_tick_t` values. You can subtract these values to obtain timing deltas, then convert them to and from seconds by using the convenience conversion ratios. Use `mint_timer_greater_or_equal` to determine whether `b` is not earlier than `a` in time; it handles wrap-around. Call `mint_timer_getSecondsToTicks` to obtain the conversion ratio without calling `mint_timer_initialize` first; it queries the value from the system each time.
 
 ## Sleep
 
