@@ -25,11 +25,15 @@ First, you must generate the projects using [CMake](http://www.cmake.org/). Open
 
     cmake -G "Visual Studio 11" ..
 
+On a Unix-like OS, to generate a makefile that builds the release configuration:
+
+    cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" ..
+
 To generate projects for iOS devices, use the following.
 
     cmake -DCMAKE_TOOLCHAIN_FILE=../../cmake/iOS.cmake -G "Xcode" ..
 
-To build the project, simply use the generated project files as you would normally. Optionally, you can use CMake to perform the build step, too. For example, on Windows, you can use the command:
+To build the project, simply use the generated project files as you would normally. On some platforms, you can use CMake to perform the build step, too. For example, on Windows, you can use the command:
 
     cmake --build . --config Release
 
