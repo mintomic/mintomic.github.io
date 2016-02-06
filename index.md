@@ -5,6 +5,12 @@ next: /lock-free
 next_title: Lock-Free API
 ---
 
+---
+
+*** **Update 2015-02-06: Mintomic is no longer being maintained.** Native C atomics are available in [Turf](https://github.com/preshing/turf) instead: https://github.com/preshing/turf/tree/master/turf/c ***
+
+---
+
 Mintomic (short for "minimal atomic") is an API for low-level [lock-free programming](http://preshing.com/20120612/an-introduction-to-lock-free-programming) in C and C++.
 
 ## Design Goals
